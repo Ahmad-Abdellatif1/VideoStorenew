@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'YOUR_GITHUB_URL_HERE'
+                git branch: 'main', url: 'https://github.com/Ahmad-Abdellatif1/videostorenew.git'
             }
         }
         
