@@ -5,16 +5,14 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    default-libmysqlclient-dev pkg-config \
-    gcc \
-    libc6-dev \
-    && rm -rf /var/lib/apt/lists/*
-
+# Copy requirements first for better caching
 COPY requirements.txt /app/
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
 
+# Install Python dependencies only (removed unnecessary system packages)
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
 COPY . /app/
 
 EXPOSE 8000
