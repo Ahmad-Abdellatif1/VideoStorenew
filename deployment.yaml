@@ -18,6 +18,3 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8000
-        env:
-        - name: USE_POSTGRES
-          value: "true"

@@ -49,25 +49,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'videostore.wsgi.application'
 
-# Database configuration - Use PostgreSQL for Kubernetes, SQLite for local
-if os.environ.get('USE_POSTGRES'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'videostore',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'HOST': 'postgres-service',
-            'PORT': '5432',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
